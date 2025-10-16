@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import Models.Dish;
+import Models.Menu;
+
+public class app {
+    public static void main(String[] args){
+        List<Dish> dishes = new ArrayList<>();
+        Menu menu = new Menu(dishes);
+        menu.printMenu();//
+    }
+}
