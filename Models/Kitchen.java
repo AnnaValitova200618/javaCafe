@@ -1,11 +1,18 @@
-package Models;
+package models;
 
 import java.util.List;
 
+import enums.OrderStatus;
+
 public class Kitchen {
-    List<Order> orders;
+    private List<Order> orders;
   
-    void toCook(Order order){
-        
+    public Kitchen(List<Order> orders){
+        this.orders = orders;
+    }
+    public void toCook(Order order){
+        if(order.getStatus() != OrderStatus.PENDING){
+            
+        }
     }
 }

@@ -1,26 +1,17 @@
-package Models;
-
-import java.util.ArrayList;
-import java.util.List;
-
+package models;
+import enums.DishType;
 
 public class Dish {
-    int ID;
-    String title;
-    String description;
-    double price;
-    int weight;
+    private int ID;
+    private String title;
+    private String description;
+    private double price;
+    private int weight;
     // List<Product> products = new ArrayList<>();
-    DishType type;
-    int caloricContent;
+    private DishType type;
+    private int caloricContent;
 
-    public enum DishType {
-        CHILDREN,
-        DRINK,
-        DESSERT,
-        SOUP,
-        MAIN
-    }
+ 
 
     public Dish(int ID, String title, String description, double price, int weight, DishType type, int caloricContent) {
         this.ID = ID;
@@ -31,4 +22,12 @@ public class Dish {
         this.type = type;
         this.caloricContent = caloricContent;
     }
+
+    public int getID(){return ID;}
+    public String getTitle(){return title;}
+    public String getDescription(){return description;}
+    public double getPrice(){return price;}
+    public int getWeight(){return weight;}
+    public DishType getDishType(){ return type;}
+    public int getCaloricContent(){return caloricContent;}
 }

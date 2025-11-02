@@ -1,14 +1,17 @@
-package Models;
-
+package models;
 import java.util.List;
 
+import models.employees.Chef;
+import models.employees.Waiter;
+
 public class Cafe{
-    Kitchen kitchen;
-    Menu menu;
-    List<Worker> workers;
-    List<Client> clients;
-    int maxCapacity;
-    boolean open;
+    private Kitchen kitchen;
+    private Menu menu;
+    private List<Waiter> workers;
+    private Chef chef;
+    private List<Client> clients;
+    private int maxCapacity;
+    private boolean open;
   
     void openCafe(){
         this.open = true;

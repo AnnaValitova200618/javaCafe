@@ -1,8 +1,8 @@
-package Models;
+package models;
 
 public class Client {
-    String name;
-    int money;
+    private String name;
+    private int money;
   
     void payOrder(Order order, int totalPrice){
         if(totalPrice > this.money){
