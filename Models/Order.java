@@ -8,6 +8,7 @@ import enums.OrderStatus;
 import models.employees.Waiter;
 
 public class Order {
+    
     private List<Dish> dishes = new ArrayList<>();
     private Waiter waiter;
     private ZonedDateTime datetime;
@@ -33,7 +34,7 @@ public class Order {
     }
 
     public OrderStatus getStatus(){return status;}
-    
+
     public void setStatus(OrderStatus status) {
         this.status = status;
     }

@@ -12,7 +12,9 @@ public class Kitchen {
     }
     public void toCook(Order order){
         if(order.getStatus() != OrderStatus.PENDING){
-            
+            System.out.println("возникла проблема с блюдом");
+            return;
         }
+        order.setStatus(OrderStatus.IN_WORK);
     }
 }
