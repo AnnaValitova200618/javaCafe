@@ -3,17 +3,17 @@ import models.Order;
 import models.abstracts.Employee;
 
 public class Chef extends Employee {
-    private String specialization;
     
-    public Chef(String name, double salary, String specialization) {
+    
+    public Chef(String name, double salary) {
         super(name, "Повар", salary);
-        this.specialization = specialization;
+        
     }
     
     @Override
     public double calculateSalary(Order order) {
-        return salary; // Фиксированная зарплата для повара
+        return salary;
     }
     
-    public String getSpecialization() { return specialization; }
+    
 }

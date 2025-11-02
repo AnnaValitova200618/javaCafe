@@ -41,6 +41,7 @@ public class Waiter extends Employee {
         if(answer == 'y'){
             boolean flag = true;
             while (flag) {
+                System.out.println("Какое желаете блюдо? (Введите id блюда)");
                 int idDish = scanner.nextInt();
                 Dish foundDish = menu.getDishes().stream().filter(s -> s.getID() == idDish).findFirst().orElse(null);;
                 
@@ -74,7 +75,7 @@ public class Waiter extends Employee {
             System.out.println("возникла проблема с блюдом");
             return;
         }
-
+        System.out.println("Статус заказа - ожидание");
         order.setStatus(OrderStatus.PENDING);
     }
 
@@ -83,6 +84,7 @@ public class Waiter extends Employee {
             System.out.println("возникла проблема с блюдом");
             return;
         }
+        System.out.println("Статус заказа - готово");
         order.setStatus(OrderStatus.DONE);
     }
 }

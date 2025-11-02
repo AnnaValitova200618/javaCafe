@@ -5,6 +5,7 @@ import java.util.List;
 import enums.OrderStatus;
 
 public class Kitchen {
+    
     private List<Order> orders;
   
     public Kitchen(List<Order> orders){
@@ -15,6 +16,7 @@ public class Kitchen {
             System.out.println("возникла проблема с блюдом");
             return;
         }
+        System.out.println("Статус заказа - в работе");
         order.setStatus(OrderStatus.IN_WORK);
     }
 }
