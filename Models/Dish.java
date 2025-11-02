@@ -1,13 +1,13 @@
 package models;
 import enums.DishType;
+import models.interfaces.Discountable;
 
-public class Dish {
+public class Dish implements Discountable {
     private int ID;
     private String title;
     private String description;
     private double price;
     private int weight;
-    // List<Product> products = new ArrayList<>();
     private DishType type;
     private int caloricContent;
 
@@ -21,6 +21,11 @@ public class Dish {
         this.weight = weight;
         this.type = type;
         this.caloricContent = caloricContent;
+    }
+
+    @Override
+    public double getDiscountedPrice(double discountRate) {
+        return price * (1 - discountRate);
     }
 
     public int getID(){return ID;}

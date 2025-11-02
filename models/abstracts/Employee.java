@@ -18,4 +18,5 @@ public abstract class Employee {
     
     public String getName() { return name; }
     public String getPosition() { return position; }
+    public double getSalary(){ return salary;}
 }
