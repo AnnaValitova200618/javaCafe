@@ -14,7 +14,7 @@ import models.employees.Waiter;
 
 public class runApp {
     public static void main(String[] args) {
-        System.out.println("Чтобы программа нормально функционаировала, пожалуйста, вводите y-да или n-нет");
+        System.out.println("Чтобы программа нормально функционаировала, пожалуйста, вводите y - да или n - нет");
 
         List<Dish> dishes = new ArrayList<>();
         Menu menu = new Menu(dishes);

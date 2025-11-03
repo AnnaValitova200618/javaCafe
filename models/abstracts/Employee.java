@@ -15,7 +15,6 @@ public abstract class Employee {
     
     public abstract double calculateSalary(Order order);
     
-    
     public String getName() { return name; }
     public String getPosition() { return position; }
     public double getSalary(){ return salary;}
