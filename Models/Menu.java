@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 public class Menu {
     private List<Dish> dishes = new ArrayList<>();
 
-    public Menu(List<Dish> dishes){
-        this.dishes = dishes;
+    public Menu(){
         loadMenuFromCSV();
     }
     public List<Dish> getDishes(){return dishes;}
@@ -75,7 +74,7 @@ public class Menu {
         System.out.println("--------------------------------------------------");
         
         for (Dish dish : dishes) {
-            System.out.printf("#%-2d %-20s %5.0f руб%n", dish.getID(), dish.getTitle(), dish.getPrice());
+            System.out.printf("#%-2d %-20s %5.0f руб%n", dish.getId(), dish.getTitle(), dish.getPrice());
             System.out.println("   " + dish.getDescription());
             System.out.printf("   Вес: %dг | Калории: %d%n%n", dish.getWeight(), dish.getCaloricContent());
         }

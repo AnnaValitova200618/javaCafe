@@ -30,44 +30,49 @@ public class Waiter extends Employee {
         return salary + (totalOrderPrice * 0.05);
     }
     
-    public Order takeOrder(Client client, Menu menu){
+    public Order takeOrder(Client client, Menu menu) {
         Scanner scanner = new java.util.Scanner(System.in, "cp866");
         List<Dish> dishes = new ArrayList<>();
-        Order order = null;
-
-        System.out.println("Добрый день, готовы сделать заказ?");
-        char answer = scanner.next().charAt(0);
-
-        if(answer == 'y'){
-            boolean flag = true;
-            while (flag) {
-                System.out.println("Какое желаете блюдо? (Введите id блюда)");
+    
+        System.out.println("Добрый день! Готовы сделать заказ? (y/n)");
+        String answer = scanner.next();
+    
+        if (!answer.equals("y")) {
+            System.out.println("Хорошо, возвращайтесь позже!");
+            
+            scanner.close();
+            return null;
+        }
+    
+        while (true) {
+            System.out.println("\nКакое блюдо желаете? Введите ID из меню:");
+            
+    
+            try {
                 int idDish = scanner.nextInt();
-                Dish foundDish = menu.getDishes().stream().filter(s -> s.getID() == idDish).findFirst().orElse(null);;
+                Dish foundDish = menu.getDishes().stream().filter(d -> d.getId() == idDish).findFirst().orElse(null);
+    
+                if (foundDish == null) {
+                    System.out.println("Блюдо с ID " + idDish + " не найдено.");
+                    continue;
+                }
+    
+                dishes.add(foundDish);
+                System.out.println("Хотите что-нибудь ещё? (y/n)");
+                answer = scanner.next();
+    
+                if (answer.equals("n")) {
+                    scanner.close();
+                    return new Order(dishes, this, client);
+                }
                 
-                if(foundDish == null){
-                    System.out.println("Такого блюда нет");
-                }
-                else{
-                    dishes.add(foundDish);
-                    System.out.println("Что-нибудь ещё?");
-                    answer = scanner.next().charAt(0);
-
-                    if(answer == 'n'){
-                        
-                        order = new Order(dishes, this, client);
-                        flag = false;
-                    }
-                }
+    
+            } catch (Exception e) {
+                System.out.println("Ошибка: введите корректный ID (целое число).");
+                scanner.nextLine(); // съедаем неверный ввод, чтобы не зациклиться
             }
         }
-        else{
-            menu.printMenu();
-        }
-
-        scanner.close();
-        return order;
-  }
+    }
 
     public void toKitchen(Order order){
 

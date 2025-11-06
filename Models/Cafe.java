@@ -35,7 +35,7 @@ public class Cafe{
     public void addClientInCafe(Client client){
         this.clients.add(client);
     }
-    public void delClientInCafe(Client client){
+    public void removeClientInCafe(Client client){
         this.clients.remove(client);
     }
     public Kitchen getKitchen() {return kitchen;}

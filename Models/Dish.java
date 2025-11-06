@@ -3,7 +3,7 @@ import enums.DishType;
 import models.interfaces.Discountable;
 
 public class Dish implements Discountable {
-    private int ID;
+    private int id;
     private String title;
     private String description;
     private double price;
@@ -13,8 +13,8 @@ public class Dish implements Discountable {
 
  
 
-    public Dish(int ID, String title, String description, double price, int weight, DishType type, int caloricContent) {
-        this.ID = ID;
+    public Dish(int id, String title, String description, double price, int weight, DishType type, int caloricContent) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
@@ -28,7 +28,7 @@ public class Dish implements Discountable {
         return price * (1 - discountRate);
     }
 
-    public int getID(){return ID;}
+    public int getId(){return id;}
     public String getTitle(){return title;}
     public String getDescription(){return description;}
     public double getPrice(){return price;}

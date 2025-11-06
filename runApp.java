@@ -16,8 +16,8 @@ public class runApp {
     public static void main(String[] args) {
         System.out.println("Чтобы программа нормально функционаировала, пожалуйста, вводите y - да или n - нет");
 
-        List<Dish> dishes = new ArrayList<>();
-        Menu menu = new Menu(dishes);
+        // List<Dish> dishes = new ArrayList<>();
+        Menu menu = new Menu();
         //Waiter natalya = new Waiter("Наталья", 30000);
         Waiter waiter = new Waiter("Рома", 29000);
         Chef chef = new Chef("Фома", 400000);
@@ -33,7 +33,7 @@ public class runApp {
 
         cafe.openCafe();// кафе открылось
         clients.add(client);//ростик теперь с другими клиентами
-        cafe.addClientInCafe(client);//ростик пришел в кафе
+       
         
         simulateWorkingDay(cafe, waiter, chef, menu);//cимуляция рабочего дня
         
@@ -41,34 +41,46 @@ public class runApp {
     }
     
     public static void simulateWorkingDay(Cafe cafe, Waiter waiter, Chef chef, Menu menu) {
-        Scanner scanner = new Scanner(System.in, "cp866");
-        
+        if (cafe.getClients() == null || cafe.getClients().isEmpty()) {
+            System.out.println("Нет клиентов в кафе!");
+            return;
+        }
+    
+        Client firstClient = cafe.getClients().getFirst();
+    
         System.out.println("=== ДОБРО ПОЖАЛОВАТЬ В КАФЕ! ===");
         menu.printMenu();
-        
+        System.out.println();
     
-        // Процесс заказа
-        System.out.println("\n=== ПРОЦЕСС ЗАКАЗА ===");
-        Order order = waiter.takeOrder(cafe.getClients().getFirst(), menu);
-        
-        if (order != null) {
-            // Официант передает заказ на кухню
-            waiter.toKitchen(order);
-            
-            cafe.getKitchen().toCook(order);//Фома на кухне готовит заказ (хотя фома тут никак не задействован)
-            
-            waiter.getOrderFromKitchen(order);//Рома забирает готовый заказ
-            
-            int totalPrice = order.getTotalPrice();//считаем на сколько наел Ростик
-            
-            cafe.getClients().getFirst().payOrder(totalPrice);//Ростик оплачивает
-            
-            waiter.addCompletedOrder(order);//учитываем выполненный заказ для зарплаты Ромы
-            
-            printSalaryReport(waiter, chef, order);//отчет по зарплатам
+        System.out.println("=== ПРОЦЕСС ЗАКАЗА ===");
+        Order order = waiter.takeOrder(firstClient, menu);
+    
+        if (order == null) {
+            System.out.println("Заказ не был сделан. До свидания!");
+            return;
         }
-        
-        scanner.close();
+    
+        waiter.toKitchen(order); // Официант передает заказ на кухню
+    
+        Kitchen kitchen = cafe.getKitchen();//Фома на кухне готовит заказ
+        if (kitchen != null) {
+            kitchen.toCook(order);
+        } else {
+            System.out.println("Ошибка: кухня недоступна!");
+            return;
+        }
+    
+        waiter.getOrderFromKitchen(order);//Рома забирает готовый заказ
+    
+        // Расчёт и оплата
+        try {
+            int totalPrice = order.getTotalPrice();//считаем на сколько наел Ростик
+            firstClient.payOrder(totalPrice);//Ростик оплачивает
+            waiter.addCompletedOrder(order);//учитываем выполненный заказ для зарплаты Ромы
+            printSalaryReport(waiter, chef, order);//отчет по зарплатам
+        } catch (Exception e) {
+            System.out.println("Ошибка при расчёте заказа: " + e.getMessage());
+        }
     }
     
     public static void printSalaryReport(Waiter waiter, Chef chef, Order order) {
