@@ -39,7 +39,5 @@ public class Order {
         this.status = status;
     }
 
-    // public void setStatus(OrderStatus status){
-    //     status = OrderStatus.PENDING;
-    // }
+    
 }
