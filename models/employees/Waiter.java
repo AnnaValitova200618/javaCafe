@@ -77,7 +77,7 @@ public class Waiter extends Employee {
     public void toKitchen(Order order){
 
         if(order.getStatus() != OrderStatus.CREATED){
-            System.out.println("возникла проблема с блюдом");
+            System.out.println("Возникла проблема с блюдом");
             return;
         }
         System.out.println("Статус заказа - ожидание");
